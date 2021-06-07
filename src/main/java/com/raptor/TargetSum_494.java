@@ -13,6 +13,15 @@ public class TargetSum_494 {
         return dfs(nums, target, 0);
     }
 
+    /**
+     *
+     * @DESC 数组长度小且只存在加和减两种情况，最容易想到的就是暴力搜索
+     *
+     * @param nums  初始数组
+     * @param target  目标值
+     * @param index  当前索引
+     * @return  总和
+     */
     public int dfs(int[] nums, int target, int index) {
         if (nums.length == index) {
             if (target == 0) {
