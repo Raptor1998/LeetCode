@@ -33,6 +33,12 @@ public class TargetSum_494 {
         return dfs(nums, target + nums[index], index + 1) + dfs(nums, target - nums[index], index + 1);
     }
 
+    public void dp(int[] nums, int target){
+
+    }
+
+
+
     @Test
     public void context() {
         int[] nums = new int[]{1, 1, 1, 1, 1};
