@@ -1,4 +1,4 @@
-package com.raptor;
+package com.raptor.random;
 
 import org.junit.Test;
 
