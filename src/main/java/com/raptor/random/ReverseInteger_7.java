@@ -44,6 +44,6 @@ public class ReverseInteger_7 {
 
     @Test
     public void context() {
-        System.out.println(reverse(1999999999));
+        System.out.println(reverse(199999));
     }
 }

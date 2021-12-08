@@ -1,4 +1,4 @@
-package com.raptor.base.dayfive;
+package com.raptor.base.day5;
 
 /**
  * @author raptor
@@ -6,17 +6,17 @@ package com.raptor.base.dayfive;
  * @date 2021/12/7 20:27
  */
 public class ListNode {
-    int val;
-    ListNode next;
+    public int val;
+    public ListNode next;
 
-    ListNode() {
+    public ListNode() {
     }
 
-    ListNode(int val) {
+    public ListNode(int val) {
         this.val = val;
     }
 
-    ListNode(int val, ListNode next) {
+    public ListNode(int val, ListNode next) {
         this.val = val;
         this.next = next;
     }

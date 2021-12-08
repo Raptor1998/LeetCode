@@ -1,4 +1,4 @@
-package com.raptor.base.daytwo;
+package com.raptor.base.day2;
 
 /**
  * @author raptor

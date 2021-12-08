@@ -1,8 +1,4 @@
-package com.raptor.base.daytwo;
-
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Collections;
+package com.raptor.base.day2;
 
 /**
  * @author raptor
