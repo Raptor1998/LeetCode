@@ -5,6 +5,7 @@ import com.raptor.base.day5.ListNode;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.Stack;
 
 /**
  * @author raptor
@@ -12,7 +13,7 @@ import java.util.List;
  * @date 2021/12/10 17:11
  */
 public class Offer06 {
-    public static int[] reversePrint(ListNode head) {
+    public static int[] reversePrint1(ListNode head) {
         List<Integer> list = new ArrayList<>();
         while (head != null) {
             list.add(head.val);
@@ -30,6 +31,42 @@ public class Offer06 {
         return ints;
     }
 
+    public static int[] reversePrint2(ListNode head) {
+        Stack<Integer> stack = new Stack<>();
+        while (head != null) {
+            stack.push(head.val);
+            head = head.next;
+        }
+
+        int[] ans = new int[stack.size()];
+        int i = 0;
+        while (!stack.isEmpty()) {
+            ans[i] = stack.pop();
+            i++;
+        }
+        return ans;
+    }
+
+    static List<Integer> tmp = new ArrayList<>();
+
+    public static int[] reversePrint(ListNode head) {
+        recur(head);
+        int[] res = new int[tmp.size()];
+        for (int i = 0; i < res.length; i++) {
+            res[i] = tmp.get(i);
+        }
+        return res;
+    }
+
+    private static void recur(ListNode head) {
+
+        if (head == null) {
+            return;
+        }
+        System.out.println("当前head的值："+head.val);
+        recur(head.next);
+        tmp.add(head.val);
+    }
 
 
     public static void main(String[] args) {

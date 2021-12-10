@@ -4,6 +4,8 @@ import com.raptor.base.day5.ListNode;
 import org.junit.Test;
 import sun.plugin2.message.Message;
 
+import java.util.List;
+
 /**
  * @author raptor
  * @description Solution206
@@ -11,7 +13,7 @@ import sun.plugin2.message.Message;
  * https://leetcode-cn.com/problems/reverse-linked-list/
  */
 public class Solution206 {
-    public static ListNode reverseList(ListNode head) {
+    public static ListNode reverseList1(ListNode head) {
         ListNode pre = null;
         ListNode curr = head;
         while (curr != null) {
@@ -21,6 +23,17 @@ public class Solution206 {
             curr = next;
         }
         return pre;
+    }
+
+    public static ListNode reverseList(ListNode head) {
+        if (head == null || head.next == null) {
+            return head;
+        }
+        ListNode newHead = reverseList(head.next);
+        head.next.next = head;
+        head.next = null;
+        return newHead;
+
     }
 
     public static void main(String[] args) {
