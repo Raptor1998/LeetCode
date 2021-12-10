@@ -1,68 +1,48 @@
-# 剑指Offer专题
+package com.raptor.offer.day01;
 
-## [用两个栈实现队列](https://leetcode-cn.com/problems/yong-liang-ge-zhan-shi-xian-dui-lie-lcof/)
+import java.util.Stack;
+import java.util.Vector;
 
-**初始化**
+/**
+ * @author raptor
+ * @description Offer30
+ * @date 2021/12/10 10:09
+ */
+public class Offer30 {
+    public static void main(String[] args) {
 
-- 初始化 `stack1` 和 `stack2` 为空
-
-**插入元素**
-
-- `stack1` 直接插入元素
-
-**删除元素**
-
-- 如果 `stack2` 为空，则将 `stack1` 里的所有元素弹出插入到 `stack2` 里
-
-- 如果 `stack2` 仍为空，则返回 `-1`，否则从 `stack2` 弹出一个元素并返回
-
-```java
-class CQueue {
-
-    Stack<Integer> stack1;
-    Stack<Integer> stack2;
-
-    public CQueue() {
-        stack1 = new Stack<>();
-        stack2 = new Stack<>();
-    }
-
-    public void appendTail(int value) {
-        stack1.push(value);
-    }
-
-    public int deleteHead() {
-        if (stack1.isEmpty() && stack2.isEmpty()) {
-            return -1;
-        }
-        //出栈中的数据为空
-        if (stack2.isEmpty()) {
-            //将入栈中的数据全部压入
-            while (!stack1.isEmpty()) {
-                Integer pop = stack1.pop();
-                stack2.push(pop);
-            }
-        }
-        return stack2.pop();
+    //["MinStack","push",        "push",      "push", "top","pop","min","pop","min","pop","push",     "top","min","    push",    "top","min","pop","min"]
+    //[  [],    [2147483646],[2147483646],[2147483647],[],   [],    [],   [],   [],   [],[2147483647], [],    [],  [-2147483648], [],    [],   [],   []]
+        MinStack obj = new MinStack();
+        System.out.println("push 2147483646");
+        obj.push(2147483646);
+        System.out.println("push 2147483646");
+        obj.push(2147483646);
+        System.out.println("push 2147483646");
+        obj.push(2147483646);
+        System.out.println(obj.top());
+        System.out.println("pop one");
+        obj.pop();
+        System.out.println(obj.min());
+        System.out.println("pop one");
+        obj.pop();
+        System.out.println(obj.min());
+        System.out.println("pop one");
+        obj.pop();
+        System.out.println("push 2147483646");
+        obj.push(2147483646);
+        System.out.println(obj.top());
+        System.out.println(obj.min());
+        System.out.println("push -2147483646");
+        obj.push(-2147483646);
+        System.out.println(obj.top());
+        System.out.println(obj.min());
+        System.out.println("pop one");
+        obj.pop();
+        System.out.println(obj.min());
     }
 }
-```
 
-## [包含min函数的栈](https://leetcode-cn.com/problems/bao-han-minhan-shu-de-zhan-lcof/)
-
-+ MinStack 不适用辅助空间，但要处理数据超出Integer范围
-
-  插入x时，插入原值与当前最小值的差
-
-  此时top>0，则说明原x比最小值大，出栈时，将x恢复，top = x - min ， x = min + top
-
-  top<0，则说明原x值，比最小值还小，最小值更新，top出栈时，要还原最小值 minOld = minNow + |x-minOld|
-
-  栈中存差值，具体见代码
-
-+ 常规法，使用辅助栈
-
-```java
 /**
  * 不适用额外空间
  * 连续存最小值，存差值
@@ -210,4 +190,3 @@ class MinStack1 {
         return stack2.peek();
     }
 }
-```
