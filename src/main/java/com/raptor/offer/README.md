@@ -50,19 +50,18 @@ class CQueue {
 
 ## [包含min函数的栈](https://leetcode-cn.com/problems/bao-han-minhan-shu-de-zhan-lcof/)
 
-+ MinStack 不适用辅助空间，但要处理数据超出Integer范围
+### 不使用辅助空间
 
-  插入x时，插入原值与当前最小值的差
+要处理数据超出Integer范围
 
-  此时top>0，则说明原x比最小值大，出栈时，将x恢复，top = x - min ， x = min + top
+插入x时，插入原值与当前最小值的差
 
-  top<0，则说明原x值，比最小值还小，最小值更新，top出栈时，要还原最小值 minOld = minNow + |x-minOld|
+此时top>0，则说明原x比最小值大，出栈时，将x恢复，top = x - min ， x = min + top
 
-  栈中存差值，具体见代码
+top<0，则说明原x值，比最小值还小，最小值更新，top出栈时，要还原最小值 minOld = minNow + |x-minOld|
 
-+ 常规法，使用辅助栈
+栈中存差值，具体见代码
 
-```java
 /**
  * 不适用额外空间
  * 连续存最小值，存差值
@@ -80,7 +79,8 @@ class MinStack {
     }
 
 
-    public void push(int x) {
+```java
+public void push(int x) {
         //栈 初始为空，压入0，最小值为 x
         if (stack1.isEmpty()) {
             stack1.push(0L);
@@ -120,7 +120,10 @@ class MinStack {
         return minVal.intValue();
     }
 }
+```
+### 辅助栈
 
+```java
 /**
  * 辅助栈中保证有序，降低辅助栈中元素个数
  */
@@ -209,5 +212,152 @@ class MinStack1 {
         }
         return stack2.peek();
     }
+}
+```
+
+## [二维数组中的查找](https://leetcode-cn.com/problems/er-wei-shu-zu-zhong-de-cha-zhao-lcof/)
+
+在一个 n * m 的二维数组中，每一行都按照从左到右递增的顺序排序，每一列都按照从上到下递增的顺序排序。请完成一个高效的函数，输入这样的一个二维数组和一个整数，判断数组中是否含有该整数。
+
+### 逐行二分
+
+```java
+/**
+ * 确定区间后 逐行二分
+ *
+ * @param matrix
+ * @param target
+ * @return
+ */
+public static boolean findNumberIn2DArray1(int[][] matrix, int target) {
+    int n = matrix.length;
+    if (n == 0) {
+        return false;
+    }
+    if (n == 1) {
+        return search(matrix[0], target);
+    }
+    int m = matrix[0].length;
+    for (int i = 0; i < n; i++) {
+        if (matrix[i][0] <= target && matrix[i][m - 1] >= target) {
+            boolean search = search(matrix[i], target);
+            if (search) {
+                return true;
+            }
+        }
+    }
+    return false;
+}
+
+public static boolean search(int[] a, int target) {
+    int low = 0;
+    int high = a.length - 1;
+    while (low <= high) {
+        int middle = low + (high - low) / 2;
+        if (a[middle] > target) {
+            high = middle - 1;
+        } else if (a[middle] < target) {
+            low = middle + 1;
+        } else {
+            return true;
+        }
+    }
+    return false;
+}
+```
+
+### 逐行二分
+
+![线性查找](./static/offer0401.png)
+
+```java
+public static boolean findNumberIn2DArray(int[][] matrix, int target) {
+    int n = matrix.length;
+    if (n == 0) {
+        return false;
+    }
+    int m = matrix[0].length;
+    int row = 0, column = m - 1;
+    while (row < n && column >= 0) {
+        if (matrix[row][column] == target) {
+            return true;
+        } else if (matrix[row][column] > target) {
+            //如果目标值比当前位置小，说明在左侧列
+            column--;
+        } else if (matrix[row][column] < target) {
+            //如果目标值比当前位置大，说明在下面行
+            row++;
+        }
+    }
+    return false;
+}
+```
+
+## [数组中重复的数字](https://leetcode-cn.com/problems/shu-zu-zhong-zhong-fu-de-shu-zi-lcof/)
+
+在一个长度为 n 的数组 nums 里的所有数字都在 0～n-1 的范围内。数组中某些数字是重复的，但不知道有几个数字重复了，也不知道每个数字重复了几次。请找出数组中任意一个重复的数字。
+
+### HashSet
+
+```java
+public static int findRepeatNumber(int[] nums) {
+    Set<Integer> dic = new HashSet<>();
+    for (int num : nums) {
+        if (dic.contains(num)) {
+            return num;
+        }
+        dic.add(num);
+    }
+    return -1;
+}
+```
+
+### 辅助数组
+
+nums 里的所有数字都在 0～n-1 的范围内，使用另一个数组存储每个数出现的次数，记录当前的最大次数，直到有出现次数更多的数。
+
+```java
+public static int findRepeatNumber(int[] nums) {
+    int[] sum = new int[nums.length];
+    int max = -1;
+    int maxVal = -1;
+    for (int num : nums) {
+        sum[num]++;
+        if (sum[num] > max) {
+            max = sum[num];
+            maxVal = num;
+        }
+    }
+    return maxVal;
+}
+```
+
+### 原地交换
+
+[原地交换](https://leetcode-cn.com/problems/shu-zu-zhong-zhong-fu-de-shu-zi-lcof/solution/mian-shi-ti-03-shu-zu-zhong-zhong-fu-de-shu-zi-yua/)
+
+![原地交换](./static/offer0301.png)
+
+```java
+public static int findRepeatNumber(int[] nums) {
+    int i = 0, n = nums.length;
+    while (i < n) {
+        //索引nums[i]位置已经换过，
+        if (nums[i] == i) {
+            i++;
+            continue;
+        }
+        if (nums[nums[i]] == nums[i]) {
+            return nums[i];
+        }
+        swap(nums, i, nums[i]);
+    }
+    return -1;
+}
+
+public static void swap(int[] nums, int i, int j) {
+    int temp = nums[i];
+    nums[i] = nums[j];
+    nums[j] = temp;
 }
 ```
