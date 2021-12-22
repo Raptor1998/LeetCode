@@ -266,7 +266,7 @@ public static boolean search(int[] a, int target) {
 }
 ```
 
-### 逐行二分
+### 线性查找
 
 ![线性查找](./static/offer0401.png)
 
