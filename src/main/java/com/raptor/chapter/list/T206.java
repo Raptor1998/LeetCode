@@ -1,14 +1,13 @@
-package com.raptor.offer.day02;
+package com.raptor.chapter.list;
 
 import com.raptor.base.day5.ListNode;
 
 /**
  * @author raptor
- * @description Offer24
- * @date 2021/12/11 20:21
- * https://leetcode-cn.com/problems/fan-zhuan-lian-biao-lcof/
+ * @description T206
+ * @date 2022/2/12 19:12
  */
-public class Offer24 {
+public class T206 {
     public static ListNode reverseList1(ListNode head) {
         ListNode pre = null;
         ListNode curr = head;
@@ -21,18 +20,29 @@ public class Offer24 {
         return pre;
     }
 
-    public static ListNode reverseList(ListNode head) {
-        return recur(null,head);
+    public static ListNode reverseList2(ListNode head) {
+        return recur(null, head);
     }
 
     public static ListNode recur(ListNode pre, ListNode curr) {
         if (curr == null) {
             return pre;
         }
-        ListNode recur = recur(curr, curr.next);
+        ListNode temp = recur(curr, curr.next);
         curr.next = pre;
-        return recur;
+        return temp;
     }
+
+    public static ListNode reverseList(ListNode head) {
+        if (head == null || head.next == null) {
+            return head;
+        }
+        ListNode p = reverseList(head.next);
+        head.next.next = head;
+        head.next = null;
+        return p;
+    }
+
 
     public static void main(String[] args) {
         ListNode listNode1 = new ListNode(1);
@@ -44,7 +54,7 @@ public class Offer24 {
         listNode2.next = listNode3;
         listNode3.next = listNode4;
         listNode4.next = listNode5;
-        ListNode listNode = reverseList1(listNode1);
+        ListNode listNode = reverseList(listNode1);
         while (listNode != null) {
             System.out.println(listNode.val);
             listNode = listNode.next;
