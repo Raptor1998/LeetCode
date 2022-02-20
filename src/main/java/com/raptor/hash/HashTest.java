@@ -1,5 +1,9 @@
 package com.raptor.hash;
 
+import com.sun.jmx.remote.internal.ArrayQueue;
+
+import java.util.Vector;
+
 /**
  * @author raptor
  * @description HashTest
@@ -7,8 +11,16 @@ package com.raptor.hash;
  */
 public class HashTest {
     public static void main(String[] args) {
-        Integer a = 10;
-        String s = "asd";
+
+        String s = new String("as") + new String("d");
+        String a = "asd";
+        String b = s.intern();
         System.out.println(s.hashCode());
+        System.out.println(a.hashCode());
+
+        System.out.println(s == a);
+        System.out.println(b == a);
+        System.out.println(b == s);
+
     }
 }
