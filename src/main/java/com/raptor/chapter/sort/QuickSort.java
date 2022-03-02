@@ -13,11 +13,11 @@ public class QuickSort {
         if (i < j) {
             temp = R[i];
             while (i != j) {
-                while (i < j && temp >= R[j]) {
+                while (i < j && temp <= R[j]) {
                     j--;
                 }
                 R[i] = R[j];
-                while (i < j && temp <= R[i]) {
+                while (i < j && temp >= R[i]) {
                     i++;
                 }
                 R[j] = R[i];
@@ -33,38 +33,8 @@ public class QuickSort {
         arr[i] = arr[j];
         arr[j] = temp;
     }
-
-    public static void quickSort2(int R[], int lo, int hi) {
-        if (lo < hi) {
-            int pivot = partition(R, lo, hi);
-            System.out.println(pivot);
-            partition(R, lo, pivot - 1);
-            partition(R, pivot + 1, hi);
-        }
-    }
-
-    private static int partition(int[] R, int lo, int hi) {
-        int i = lo, j = hi;
-        int temp;
-        if (i < j) {
-            temp = R[i];
-            while (i != j) {
-                while (i < j && temp <= R[j]) {
-                    j--;
-                }
-                R[i] = R[j];
-                while (i < j && temp >= R[i]) {
-                    i++;
-                }
-                R[j] = R[i];
-            }
-            R[i] = temp;
-        }
-        return i;
-    }
-
     public static void main(String[] args) {
-        int[] nums = {6, 7, 5, 3, 4, 4, 9, 8};
+        int[] nums = {5,1,1,2,0,0};
         quickSort(nums, 0, nums.length - 1);
         for (int num : nums) {
             System.out.print(num + " ");

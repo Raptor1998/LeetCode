@@ -1,5 +1,7 @@
 package com.raptor.chapter.greedy;
 
+import java.util.Stack;
+
 /**
  * @author raptor
  * @description T122
@@ -42,7 +44,8 @@ public class T122 {
     }
 
     public static void main(String[] args) {
-        int[] a = new int[]{7, 1, 5, 3, 6, 4};
-        System.out.println(new T122().maxProfit(a));
+        int[] a = new int[]{2,1,2,0,1};
+        System.out.println(new T122().maxProfit3(a));
+        Stack<Character> objects = new Stack<>();
     }
 }
