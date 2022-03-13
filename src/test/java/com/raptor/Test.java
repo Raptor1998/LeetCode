@@ -1,19 +1,11 @@
 package com.raptor;
 
 
-import com.sun.javafx.scene.traversal.WeightedClosestCorner;
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import lombok.Data;
 
-import javax.imageio.ImageIO;
-import javax.imageio.ImageWriter;
-import javax.imageio.stream.ImageOutputStream;
-import javax.net.ssl.HttpsURLConnection;
-import java.awt.*;
-import java.awt.image.BufferedImage;
-import java.io.File;
-import java.io.IOException;
-import java.net.HttpURLConnection;
-import java.net.URL;
-import java.util.Iterator;
+import java.io.Serializable;
 
 /**
  * @author raptor
@@ -21,8 +13,14 @@ import java.util.Iterator;
  * @date 2021/6/9 9:40
  */
 public class Test {
-
     @org.junit.Test
-    public void context() {
+    public void testObjectMapper() throws JsonProcessingException {
+        ObjectMapper objectMapper = new ObjectMapper();
+        Man man = new Man();
+        System.out.println(objectMapper.writeValueAsString(man));
+    }
+    public static class Man implements Serializable {
+        private int age;
+        public String name;
     }
 }
