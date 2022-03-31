@@ -1,5 +1,6 @@
 package com.raptor.interview.Twangyi;
 
+import java.time.Year;
 import java.util.LinkedList;
 import java.util.Queue;
 import java.util.Scanner;
@@ -7,7 +8,7 @@ import java.util.Scanner;
 public class Main3 {
     static int n;
     static int m;
-    public static int[][] d = {{-1, 0}, {0, -1}, {1, 0}};
+    public static int[][] d = {{-1, 0}, {0, 1}, {1, 0}};
 
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
@@ -34,9 +35,12 @@ public class Main3 {
         while (!queue.isEmpty()) {
             node = queue.poll();
             for (int i = 0; i < 3; i++) {
-                Node t = node;
-                t.x += d[i][0];
-                t.y += d[i][1];
+                Node t = new Node();
+                t.x = node.x;
+                t.y = node.y;
+                t.t = node.t;
+                t.x = node.x + d[i][0];
+                t.y = node.y + d[i][1];
                 if (t.x < 0 || t.y < 0 || t.x > n - 1 || t.y > m - 1) {
                     continue;
                 }
@@ -62,6 +66,9 @@ public class Main3 {
         int x;
         int y;
         int t;
+
+        public Node() {
+        }
 
         public Node(int x, int y, int t) {
             this.x = x;

@@ -23,7 +23,7 @@ public class T205 {
 
     public static void main(String[] args) {
         String s = "bbbaaaba";
-        String t = "aaabbbba";
+        String t = "aaabbbab";
         System.out.println(isIsomorphic(s, t));
     }
 }

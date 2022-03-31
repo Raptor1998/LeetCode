@@ -33,9 +33,9 @@ public class T19 {
         ListNode listNode5 = new ListNode(6);
 
         listNode1.next = listNode2;
-        //listNode2.next = listNode3;
-        //listNode3.next = listNode4;
-        //listNode4.next = listNode5;
+        listNode2.next = listNode3;
+        listNode3.next = listNode4;
+        listNode4.next = listNode5;
         ListNode listNode = removeNthFromEnd(listNode1, 2);
         while (listNode != null) {
             System.out.println(listNode.val);
