@@ -1,5 +1,9 @@
 package com.raptor.chapter.sort;
 
+import sun.util.locale.provider.FallbackLocaleProviderAdapter;
+
+import java.util.GregorianCalendar;
+
 /**
  * @author raptor
  * @description BubbleSort
@@ -9,21 +13,19 @@ public class BubbleSort {
     static int num = 0;
 
     public static void bubbleSort(int R[]) {
-
-        for (int i = 0; i < R.length; i++) {
+        int n = R.length;
+        for (int i = n - 1; i >= 0; i--) {
             int flag = 1;
-            for (int j = 0; j < R.length - i; j++) {
-                num++;
-                if (R[j] > R[i]) {
-                    swap(R, i, j);
+            for (int j = 0; j < i; j++) {
+                if (R[j] > R[j + 1]) {
+                    swap(R, j, j + 1);
                     flag = 0;
                 }
             }
             if (flag == 1) {
-                return;
+                break;
             }
         }
-
     }
 
     public static void swap(int[] arr, int i, int j) {
@@ -33,7 +35,7 @@ public class BubbleSort {
     }
 
     public static void main(String[] args) {
-        int[] nums = {6, 7, 5, 3, 4, 4, 9, 8, 50, 54, 45, 48, 4, 15, 45, 41};
+        int[] nums = {6, 7, 5, 3, 4, 4, 9, 8, 0};
         bubbleSort(nums);
         System.out.println(num);
         for (int num : nums) {
