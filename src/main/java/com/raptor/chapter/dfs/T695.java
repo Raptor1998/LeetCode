@@ -3,7 +3,8 @@ package com.raptor.chapter.dfs;
 import java.util.LinkedList;
 import java.util.Queue;
 
-public class T695 {
+public class T695{
+
     class Node {
         int x;
         int y;
