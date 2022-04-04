@@ -19,7 +19,7 @@ public class TheKMaxNum {
         }
         System.out.println();
 
-        System.out.println(findKthLargest(a,k));
+        System.out.println(findKthLargest(a, k));
     }
 
     public static void quickSort2(int R[], int lo, int hi) {
@@ -69,6 +69,7 @@ public class TheKMaxNum {
             }
         }
     }
+
     public static void swap(int[] R, int i, int j) {
         int temp = R[i];
         R[i] = R[j];
