@@ -11,9 +11,9 @@ public class Main1 {
         HashSet<String> set = new HashSet<>();
         int index = 0;
         for (int i = 0; i < m; i++) {
-//            String s = scanner.next();
+            String s = scanner.next();
             String titleStr = scanner.nextLine();
-//            titleStr = s + titleStr;
+            titleStr = s + titleStr;
             String[] titleSplit = titleStr.split(" ");
             for (int j = 0; j < titleSplit.length; j++) {
                 String s1 = titleSplit[j];
@@ -55,9 +55,9 @@ public class Main1 {
             }
         }
 
-        for (int i = 0; i < index; i++) {
-            System.out.println(list[i].str + " " + list[i].title + " " + list[i].content);
-        }
+//        for (int i = 0; i < index; i++) {
+//            System.out.println(list[i].str + " " + list[i].title + " " + list[i].content);
+//        }
         Arrays.sort(list, new Comparator<myString>() {
             @Override
             public int compare(myString o1, myString o2) {
