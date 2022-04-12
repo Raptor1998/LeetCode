@@ -37,6 +37,6 @@ public class T5 {
     }
 
     public static void main(String[] args) {
-        System.out.println(new T5().longestPalindrome("cb"));
+        System.out.println(new T5().longestPalindrome("cbc"));
     }
 }
