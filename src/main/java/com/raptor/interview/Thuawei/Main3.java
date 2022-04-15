@@ -10,7 +10,7 @@ public class Main3 {
         int m = scanner.nextInt();
         String s = scanner.next();
         String[] split = s.split(",");
-        int[] heights = new int[m];
+        int[] heights = new int[m + 1];
         int minHeight = Integer.MAX_VALUE;
         for (int i = 0; i < m; i++) {
             heights[i] = Integer.parseInt(split[i]);
@@ -40,7 +40,7 @@ public class Main3 {
             }
         }
 
-        System.out.println(ans);
+        System.out.println(getAns2(heights, n));
 
     }
 /*
@@ -54,25 +54,49 @@ public class Main3 {
 
     public static int getAns(int[] height, int n) {
         int ans = 0;
-        int length = height.length;
+        int m = height.length;
         Stack<Integer> stack = new Stack<>();
-        for (int i = 0; i < length; i++) {
-            while (!stack.isEmpty() && height[i] > height[stack.peek()]) {
-                int tmp = stack.pop();
-                if (stack.isEmpty()) {
-                    break;
+        stack.push(-1);
+        for (int i = 0; i < m; i++) {
+            while (stack.peek() != -1 && height[stack.peek()] < height[i]) {
+                Integer pop = stack.pop();
+                int h = height[pop];
+                int pre = stack.peek();
+                h -= Math.min(pre == -1 ? 0 : height[pre], height[i]);
+                if (i - pre - 1 >= n && h < 0) {
+                    int t = (i - pre - 1) / n;
+                    ans += (t * (-h));
                 }
-                int left = stack.peek();
-                int currWidth = i - left - 1;
-                int currHeight = Math.min(height[left], height[i]);
-                if (currWidth < n || currHeight > 0) {
-                    continue;
-                }
-                ans += currWidth / n;
             }
             stack.push(i);
         }
-
         return ans;
+    }
+
+    public static int getAns2(int[] height, int n) {
+        int length = height.length;
+        Stack<Integer> stack = new Stack<>();
+        int sum = 0;
+        for (int i = 0; i < length; i++) {
+            //栈不为空  并且  栈顶元素小于当前高度
+            while (!stack.isEmpty() && height[i] > height[stack.peek()]) {
+                Integer pop = stack.pop();
+                if (stack.isEmpty()) {
+                    break;
+                }
+                Integer left = stack.peek();
+                int currWidth = i - left - 1;
+                //当前的高度和左端的地点处才能存储货物     此时的Height[pop] 一定小于当前的高度
+                int currHeight = Math.min(height[left], height[i]) - height[pop];
+                if (currWidth < n || currHeight < 0) {
+                    continue;
+                }
+                int i1 = currWidth / n;
+                sum += (i1 * currHeight);
+
+            }
+            stack.push(i);
+        }
+        return sum;
     }
 }
