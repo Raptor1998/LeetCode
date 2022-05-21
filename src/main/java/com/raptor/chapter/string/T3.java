@@ -2,7 +2,9 @@ package com.raptor.chapter.string;
 
 import javax.swing.plaf.PanelUI;
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.Map;
+import java.util.Set;
 
 /**
  * @author raptor
@@ -46,9 +48,29 @@ public class T3 {
         return ans;
     }
 
+    public int lengthOfLongestSubstring3(String s) {
+        int n = s.length(), ans = 0;
+        if (n == 1) {
+            return 1;
+        }
+        for (int i = 0; i < n; i++) {
+            Set<Character> set = new HashSet<>();
+            for (int j = i; j < n; j++) {
+                char c = s.charAt(j);
+                if (!set.contains(c)) {
+                    set.add(c);
+                } else {
+                    break;
+                }
+            }
+            ans = Math.max(ans, set.size());
+        }
+        return ans;
+    }
+
 
     public static void main(String[] args) {
-        String s = "";
-        System.out.println(new T3().lengthOfLongestSubstring(s));
+        String s = "gs";
+        System.out.println(new T3().lengthOfLongestSubstring3(s));
     }
 }

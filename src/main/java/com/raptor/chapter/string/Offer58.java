@@ -48,6 +48,6 @@ public class Offer58 {
     }
 
     public static void main(String[] args) {
-        System.out.println(new Offer58().reverseWords(" "));
+        System.out.println(new Offer58().reverseWords(" asdas qwe"));
     }
 }

@@ -4,13 +4,7 @@ import java.util.Scanner;
 
 public class Test {
     public static void main(String[] args) {
-
-        System.out.println(Integer.parseInt("-45"));
-
-        Scanner scanner = new Scanner(System.in);
-        int a  = scanner.nextInt();
-        String string2 = scanner.nextLine();
-        System.out.println(string2);
+        System.out.println((int)Math.ceil(10/3));
     }
 
     public static int foo(){
