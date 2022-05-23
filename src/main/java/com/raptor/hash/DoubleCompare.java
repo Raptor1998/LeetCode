@@ -22,6 +22,5 @@ public class DoubleCompare {
 
         int hash = 4;
         System.out.println(hash ^ (hash >>> 16));
-
     }
 }

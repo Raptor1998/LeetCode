@@ -61,11 +61,11 @@ public class T92 {
         ListNode listNode3 = new ListNode(3);
         ListNode listNode4 = new ListNode(4);
         ListNode listNode5 = new ListNode(5);
-        //listNode1.next = listNode2;
-        //listNode2.next = listNode3;
-        //listNode3.next = listNode4;
-        //listNode4.next = listNode5;
-        ListNode listNode = new T92().reverseBetween(listNode1, 1, 1);
+        listNode1.next = listNode2;
+        listNode2.next = listNode3;
+        listNode3.next = listNode4;
+        listNode4.next = listNode5;
+        ListNode listNode = new T92().reverseBetween(listNode1, 1, 5);
         while (listNode != null) {
             System.out.println(listNode.val);
             listNode = listNode.next;

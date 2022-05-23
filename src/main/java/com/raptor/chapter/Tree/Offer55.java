@@ -1,6 +1,8 @@
 package com.raptor.chapter.Tree;
 
 
+import org.omg.PortableInterceptor.InvalidSlot;
+
 import java.util.LinkedList;
 import java.util.Queue;
 
@@ -37,13 +39,26 @@ public class Offer55 {
         return ans;
     }
 
-    public int minDepth(TreeNode root){
-        if (root==null){
+    public int minDepth(TreeNode root) {
+        if (root == null) {
             return 0;
         }
 
         return Math.min(maxDepth(root.left) + 1, maxDepth(root.right) + 1);
 
+    }
+
+
+    public boolean isBalanced(TreeNode root) {
+        if (root == null) {
+            return true;
+        }
+        int left = maxDepth(root.left);
+        int right = maxDepth(root.left);
+        if (Math.abs(left - right) > 1) {
+            return false;
+        }
+        return isBalanced(root.left) && isBalanced(root.right);
     }
 
 
@@ -56,12 +71,12 @@ public class Offer55 {
         TreeNode treeNode6 = new TreeNode(6);
 
         treeNode1.left = treeNode2;
-//        treeNode1.right = treeNode3;
+        treeNode1.right = treeNode3;
         treeNode2.left = treeNode4;
-//        treeNode3.left = treeNode5;
+        treeNode3.left = treeNode5;
         treeNode4.right = treeNode6;
 
-        System.out.println(new Offer55().minDepth(treeNode1));
+        System.out.println(new Offer55().isBalanced(treeNode1));
 
     }
 }

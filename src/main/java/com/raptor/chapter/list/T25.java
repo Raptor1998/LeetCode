@@ -71,8 +71,8 @@ public class T25 {
         listNode2.next = listNode3;
         listNode3.next = listNode4;
         listNode4.next = listNode5;
-        //ListNode listNode = new T25().reverseKGroup(listNode1, 2);
-        ListNode listNode = new T25().reverse(listNode1, listNode3)[0];
+        ListNode listNode = new T25().reverseKGroup(listNode1, 2);
+        //ListNode listNode = new T25().reverse(listNode1, listNode3)[0];
         while (listNode != null) {
             System.out.println(listNode.val);
             listNode = listNode.next;
