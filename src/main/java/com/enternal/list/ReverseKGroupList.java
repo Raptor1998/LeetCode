@@ -37,19 +37,11 @@ public class ReverseKGroupList {
         return hair.next;
     }
 
-    public void show(ListNode listNode) {
-        while (listNode != null) {
-            System.out.print(listNode.val + " ");
-            listNode = listNode.next;
-        }
-        System.out.println();
-    }
-
 
     public ListNode[] reverseList(ListNode head, ListNode tail) {
         ListNode cur = head;
         ListNode pre = tail.next;
-        while (pre != tail){
+        while (pre != tail) {
             ListNode temp = cur.next;
             cur.next = pre;
             pre = cur;
@@ -57,6 +49,7 @@ public class ReverseKGroupList {
         }
         return new ListNode[]{tail, head};
     }
+
     public static void main(String[] args) {
         ListNode listNode1 = new ListNode(1);
         ListNode listNode2 = new ListNode(2);
@@ -67,8 +60,8 @@ public class ReverseKGroupList {
         listNode2.next = listNode3;
         listNode3.next = listNode4;
         listNode4.next = listNode5;
-        ListNode listNode = new ReverseKGroupList().reverseKGroup(listNode1,2);
-        while (listNode!=null){
+        ListNode listNode = new ReverseKGroupList().reverseKGroup(listNode1, 2);
+        while (listNode != null) {
             System.out.println(listNode.val);
             listNode = listNode.next;
         }
