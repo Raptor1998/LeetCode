@@ -18,6 +18,7 @@ public class RebaseDemo {
 
 
         System.out.println("git-test-branch commit444");
+        System.out.println("git-test-branch commit555");
 
     }
 }
