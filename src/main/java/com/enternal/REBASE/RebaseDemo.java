@@ -10,7 +10,10 @@ public class RebaseDemo {
         System.out.println("first commit");
         System.out.println("git-test-branch commit");
         System.out.println("git commit");
-        
+
+        System.out.println("git-test-branch commit2");
+        System.out.println("git-test-branch commit3");
+
         System.out.println("git commit222");
     }
 }
