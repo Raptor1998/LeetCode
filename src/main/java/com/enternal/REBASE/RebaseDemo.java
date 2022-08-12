@@ -1,0 +1,12 @@
+package com.enternal.REBASE;
+
+/**
+ * @author 陈文豪(chenwenhao.0401 @ bytedance.com)
+ * @version 1.0
+ * @created 2022/8/12  14:11
+ */
+public class RebaseDemo {
+    public static void main(String[] args) {
+        System.out.println("first commit");
+    }
+}
