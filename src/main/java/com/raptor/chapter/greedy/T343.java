@@ -27,8 +27,6 @@ public class T343 {
             sum += t;
             muti *= t;
             dfs( n, t, sum, muti);
-            sum -= t;
-            muti /= t;
         }
     }
 
